@@ -16,12 +16,12 @@ public class TestUtils {
 
         driver = new ChromeDriver();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
-//    @AfterMethod
-//    public void setDown() {
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void setDown() {
+        driver.quit();
+    }
 }

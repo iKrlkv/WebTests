@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import org.w3c.dom.ranges.Range;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class HW_12_VprokTest extends TestUtils{
@@ -30,9 +31,11 @@ public class HW_12_VprokTest extends TestUtils{
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click()", closePopUpButton);
 
-        Thread.sleep(15000);
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 
-        List <WebElement> popUp = driver.findElements(By.className("fo-cookies-policy"));
+        Thread.sleep(2000);
+
+        List<WebElement> popUp = driver.findElements(By.className("fo-cookies-policy"));
         Assert.assertTrue(popUp.isEmpty());
     }
 
