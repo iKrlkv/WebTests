@@ -39,4 +39,24 @@ public class HW_12_VprokTest extends TestUtils{
         Assert.assertTrue(popUp.isEmpty());
     }
 
+    @Test
+    public void changeRegionTest() throws InterruptedException {
+
+        driver.get("https://www.vprok.ru/");
+
+        String region = "Свердловская обл.";
+
+        WebElement changeRegionLink = driver.findElement(By.className("js-address-data"));
+        changeRegionLink.click();
+
+        Thread.sleep(1500);
+
+        WebElement regionToSelect = driver.findElement(By.xpath("//div[@id='form_popup-polygons']//a[contains(text(), '" + region + "')]"));
+        regionToSelect.click();
+
+        Thread.sleep(1500);
+
+        Assert.assertEquals(driver.findElement(By.className("js-address-data")).getText().trim(), region);
+    }
+
 }
