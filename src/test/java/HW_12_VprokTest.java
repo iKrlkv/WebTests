@@ -59,4 +59,20 @@ public class HW_12_VprokTest extends TestUtils{
         Assert.assertEquals(driver.findElement(By.className("js-address-data")).getText().trim(), region);
     }
 
+    @Test
+    public void searchTest() {
+
+        driver.get("https://www.vprok.ru/");
+
+        String textToSearch = "хамон";
+
+        driver.findElement(By.xpath("//div[@id='main-app']//input[@name='search']")).sendKeys(textToSearch + "\n");
+
+        List<WebElement> searchResults = driver.findElements(By.xpath("//ul[@id='catalogItems']//a[contains(@class, 'xf-product-title__link')]"));
+
+
+        for (int i = 0; i < searchResults.size(); i++) {
+            Assert.assertTrue(searchResults.get(i).getText().toLowerCase().contains(textToSearch));
+        }
+    }
 }
