@@ -3,7 +3,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.w3c.dom.ranges.Range;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -74,5 +73,16 @@ public class HW_12_VprokTest extends TestUtils{
         for (int i = 0; i < searchResults.size(); i++) {
             Assert.assertTrue(searchResults.get(i).getText().toLowerCase().contains(textToSearch));
         }
+    }
+
+    @Test
+    public void testLinkToCampaigns() {
+
+        driver.get("https://www.vprok.ru/");
+        String expectedUrl = "https://www.vprok.ru/promos";
+
+        driver.findElement(By.xpath("//a[@target='_self' and contains(text(), 'Акции')]")).click();
+
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
     }
 }
